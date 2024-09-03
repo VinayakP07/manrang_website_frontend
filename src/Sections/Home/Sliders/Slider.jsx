@@ -6,6 +6,9 @@ const Slider = () => {
   return (
     <>
         {/* Start writing your code here */}
+        {/* top buys
+        recommendation
+        new arrivals */}
     </>
   )
 }
