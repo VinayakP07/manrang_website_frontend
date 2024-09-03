@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import styles from './Footer.module.css'
+import styles from './HomeCards.module.css'
 
-function Footer() {
+function HomeCards() {
   return (
     <div>
       
@@ -10,4 +10,4 @@ function Footer() {
   )
 }
 
-export default Footer
+export default HomeCards
