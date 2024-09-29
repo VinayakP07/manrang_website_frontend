@@ -1,103 +1,123 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #000;
-    color: #ccc;
-  }
-  
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  color: #ccc;
+}
+
+footer {
+  background-color: #111;
+  padding: 40px;
+  color: #eee;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Allows sections to wrap in smaller screens */
+}
+
+.footer_section {
+  width: 23%;
+  min-width: 250px;
+  margin-bottom: 20px;
+}
+
+.footer_section h3 {
+  color: #fff;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.footer_section p,
+.footer_section a {
+  font-size: 14px;
+  color: #ccc;
+  text-decoration: none;
+  line-height: 1.8;
+}
+
+.footer_section a:hover {
+  color: #fff;
+}
+
+.social_icons {
+  margin-top: 20px;
+}
+
+.social_icons i {
+  font-size: 20px;
+  margin-right: 15px;
+  color: #ccc;
+}
+
+.social_icons i:hover {
+  color: #fff;
+}
+
+/* Complaint Form Styling */
+.complaint_form form {
+  width: 100%; /* Make it full width */
+}
+
+.complaint_form input[type="text"],
+.complaint_form input[type="email"],
+.complaint_form textarea {
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 10px; /* Increased border radius */
+  margin-bottom: 15px;
+  background-color: #222;
+  color: #eee;
+}
+
+.complaint_form button {
+  padding: 12px 20px;
+  width: 100%; /* Full width button */
+  background-color: #1ebea5; /* Changed button color */
+  color: #fff;
+  border: none;
+  border-radius: 10px; /* Rounded corners */
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.complaint_form button:hover {
+  background-color: #00a489;
+}
+
+/* Copyright Section */
+.copyright {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background-color: #111;
+  color: #ccc;
+  font-size: 14px;
+  border-top: 1px solid #222;
+  margin-top: 20px;
+}
+
+.copyright p {
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   footer {
-    background-color: #111;
-    padding: 40px;
-    color: #eee;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap; /* Allows sections to wrap in smaller screens */
+    flex-direction: column; /* Stacks sections vertically */
+    align-items: center; /* Center-aligns sections */
   }
-  
+
   .footer_section {
-    width: 23%;
-    min-width: 250px;
-    margin-bottom: 20px;
+    width: 90%; /* Full width for smaller screens */
+    max-width: 500px; /* Maximum width */
+    text-align: center; /* Center-aligns text */
   }
-  
-  .footer_section h3 {
-    color: #fff;
-    margin-bottom: 10px;
-    font-size: 18px;
-  }
-  
-  .footer_section p, a {
-    font-size: 14px;
-    color: #ccc;
-    text-decoration: none;
-    line-height: 1.8;
-  }
-  
-  .footer_section a:hover {
-    color: #fff;
-  }
-  
+
   .social_icons {
-    margin-top: 20px;
+    justify-content: center; /* Center-aligns social icons */
   }
-  
-  .social_icons i {
-    font-size: 20px;
-    margin-right: 15px;
-    color: #ccc;
+
+  .copyright {
+    font-size: 12px;
   }
-  
-  .social_icons i:hover {
-    color: #fff;
-  }
-  
-  /* Complaint Form Styling */
-  .complaint_form form {
-    width: 100%; /* Make it full width */
-  }
-  
-  .complaint_form input[type="text"],
-  .complaint_form input[type="email"],
-  .complaint_form textarea {
-    padding: 12px;
-    width: 100%;
-    border: none;
-    border-radius: 10px; /* Increased border radius */
-    margin-bottom: 15px;
-    background-color: #222;
-    color: #eee;
-  }
-  
-  .complaint_form button {
-    padding: 12px 20px;
-    width: 100%; /* Full width button */
-    background-color: #1ebea5; /* Changed button color */
-    color: #fff;
-    border: none;
-    border-radius: 10px; /* Rounded corners */
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .complaint_form button:hover {
-    background-color: #00a489;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    footer {
-      flex-direction: column; /* Stacks sections vertically */
-      align-items: center; /* Center-aligns sections */
-    }
-  
-    .footer_section {
-      width: 90%; /* Full width for smaller screens */
-      max-width: 500px; /* Maximum width */
-      text-align: center; /* Center-aligns text */
-    }
-  
-    .social_icons {
-      justify-content: center; /* Center-aligns social icons */
-    }
-  }
-  
+}
