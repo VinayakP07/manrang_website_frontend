@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Syne', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.sliderContainer {
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide {
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: none;
+  transition: transform 0.5s ease-in-out;
+}
+
+.active {
+  display: flex;
+  opacity: 1;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slideContent {
+  width: 100%;
+  color: white;
+  padding: 75px;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.slideContent h1 {
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+}
+
+.slideContent h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.slideContent p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.shopBtn {
+  background-color: #2b4a42;
+  color: #fff;
+  padding: 12px 25px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.sliderBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+  font-size: 20px;
+}
+
+.prevBtn {
+  left: 10px;
+}
+
+.nextBtn {
+  right: 10px;
+}
+
+/* Adjusting styles for responsiveness */
+@media (max-width: 700px) {
+  .slide {
+    background-size: contain;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .slideContent {
+    padding: 20px;
+  }
+
+  .slideContent h1 {
+    font-size: 2.2rem; /* Decrease font size */
+  }
+
+  .slideContent h2 {
+    font-size: 1.3rem; /* Decrease subtitle font size */
+  }
+
+  .slideContent p {
+    font-size: 1rem;
+  }
+
+  .shopBtn {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .sliderBtn {
+    top: 75%; /* Adjust button position */
+  }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+  .slideContent h1 {
+    font-size: 1.8rem; /* Reduce heading size */
+  }
+
+  .slideContent h2 {
+    font-size: 1.1rem;
+  }
+
+  .slideContent p {
+    font-size: 0.9rem;
+  }
+
+  .shopBtn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  .sliderBtn {
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .prevBtn, .nextBtn {
+    top: 70%;
+  }
+}
