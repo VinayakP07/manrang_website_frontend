@@ -17,7 +17,7 @@
   align-items: center;
   padding: 10px 20px;
   background-color: #111111;
-  height: 60px;
+  height: 80px;
   z-index: 1000;
   top: 0;
   position: sticky;
@@ -183,6 +183,11 @@
 .horizontalList a{
   font-size: 13px;
 }
+
+.navBox{
+  height: 70px;
+}
+
 }
 
 /* Hamburger icon (left side, visible on small screens) */
@@ -278,6 +283,10 @@
 @media (max-width: 835px) {
   .navButtons {
     display: none;
+  }
+
+  .navBox{
+    height: 60px;
   }
 
   .hamburger {
