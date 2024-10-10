@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './LoginSlider.css'; // Ensure this CSS is for the slider
+import React, { useState, useEffect } from 'react';
+import style from './LoginSlider.module.css'; // Import CSS module
 
 const LoginSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -8,34 +8,25 @@ const LoginSlider = () => {
     "https://i.ibb.co/nCNGCHY/Whats-App-Image-2024-09-01-at-08-58-26-4757f0e8.jpg",
   ];
 
-  const nextImage = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+  // Timer to automatically change the image every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000);
 
-  const prevImage = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [images.length]);
 
   return (
-    <div className="slider-container">
-      <img src={images[currentIndex]} alt="Slider" className="slider-image" />
-
-      <button className="prev" onClick={prevImage}>
-        &#10094;
-      </button>
-      <button className="next" onClick={nextImage}>
-        &#10095;
-      </button>
-
-      <div className="dots-container">
+    <div className={style.sliderContainer}>
+      <img src={images[currentIndex]} alt="Slider" className={style.sliderImage} />
+      <div className={style.dotsContainer}>
         {images.map((_, idx) => (
           <span
             key={idx}
-            className={`dot ${currentIndex === idx ? 'active' : ''}`}
+            className={`${style.dot} ${currentIndex === idx ? style.dotActive : ''}`}
             onClick={() => setCurrentIndex(idx)}
           ></span>
         ))}

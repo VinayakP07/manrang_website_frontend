@@ -1,0 +1,116 @@
+.signupPage {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.signupContainer {
+  display: flex;
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.signupForm {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Center contents horizontally */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  height: 600px;
+  width: 1000px;
+}
+
+.signupTitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center; /* Center title text */
+  color: black;
+}
+
+.signupDescription {
+  margin-bottom: 1rem;
+  text-align: center; /* Center description text */
+  color: black;
+}
+
+.signupLabel {
+  margin-bottom: 0.5rem;
+  text-align: center; /* Center label text */
+  color: black;
+}
+
+.signupInput {
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 18rem;
+  text-align: center; /* Center input text */
+}
+
+.signupButton {
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1rem;
+  margin-left: 7rem;
+}
+
+.signupFooter {
+  text-align: center; /* Center footer text */
+  margin-top: 1rem;
+}
+
+.signupFooter a {
+  color: #4CAF50;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signupFooter a:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .signupContainer {
+    flex-direction: column;
+    align-items: center; /* Center contents in small screens */
+  }
+
+  .signupForm {
+    width: 100%; /* Make form full-width */
+    padding: 20px; /* Add padding */
+  }
+
+  .signupTitle {
+    margin-left: 0; /* Remove left margin */
+  }
+
+  .signupDescription {
+    margin-left: 0; /* Remove left margin */
+  }
+
+  .signupLabel {
+    margin-left: 0; /* Remove left margin */
+  }
+
+  .signupInput {
+    width: 100%; /* Make input full-width */
+    margin-left: 0; /* Remove left margin */
+  }
+
+  .signupButton {
+    width: 100%; /* Make button full-width */
+    margin-left: 0; /* Remove left margin */
+  }
+}
