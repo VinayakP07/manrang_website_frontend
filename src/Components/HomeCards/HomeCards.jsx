@@ -1,18 +1,28 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React from 'react';
-import './homecards.css';
+import styles from './HomeCards.module.css';
 
-function HomeCards({ image, description, price }) {
+function HomeCards({title, image, description, price }) {
   return (
-    <div className="product-card">
-      <div className="product-image">
-        <img src={image} className="product-thumb" alt="Product" />
-        <button className="card-btn">Add to wishlist</button>
+    <div className={styles.productCard}>
+
+      <div className={styles.productImage}>
+        <img src={image} className={styles.productThumb} alt="Product" />
       </div>
-      <div className="product-info">
-        <h2 className="product-brand">Brand</h2>
-        <p className="product-short-description">{description.slice(0, 15)}...</p>
-        <span className="price">{price}</span>
+
+      <div className={styles.productInfo}>
+        <h2 className={styles.productBrand}>
+          {title ? `${title.slice(0, 50)}...` : 'No Title'}
+          </h2>
+          
+        <p className={styles.productShortDescription}>
+          {description ? `${description.slice(0, 80)}...` : 'No description available'}
+        </p>
+
+        <span className={styles.price}>${price}</span>
       </div>
+
     </div>
   );
 }
