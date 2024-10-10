@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
-import './SignUp.css'; // Ensure you have this CSS file
-import Navbar from '../../Components/Navbar/Navbar'; // Import Navbar
-import Footer from '../../Components/Footer/Footer'; // Import Footer
+import { Link, useNavigate } from 'react-router-dom';
+import style from './SignUp.module.css'; // Importing CSS module
+import LoginSlider from '../../Components/LoginSlider/LoginSlider';
+import Navbar from '../../Components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleKeyDown = (e, nextInputId) => {
     if (e.key === 'Enter') {
@@ -31,41 +32,46 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signup-page">
-      <Navbar /> {/* Add Navbar here */}
-      <div className="signup-container">
-        <div className="signup-form">
-          <h2 className="signup-title">Sign Up</h2>
-          <p className="signup-description">Create an account to get started.</p>
+    <div className={style.signupPage}>
+      <Navbar />
+      <div className={style.signupContainer}>
+        <div className={style.signupForm}>
+          <h2 className={style.signupTitle}><u>Sign Up</u></h2><br/>
+          <br/>
+          <br/>
+          <p className={style.signupDescription}>Create an account to get started.</p><br/>
+          
           <form onSubmit={handleSubmit}>
-            <label className="signup-label">Email Address</label><br/>
+            <label className={style.signupLabel}>Email Address</label><br/><br/>
             <input 
               type="email" 
               placeholder="Email Address" 
               value={email} 
-              className="signup-input" 
+              className={style.signupInput} 
               id="email" 
               onKeyDown={(e) => handleKeyDown(e, 'password')} 
               onChange={(e) => setEmail(e.target.value)} 
               required 
             /><br/>
-            <label className="signup-label">Password</label><br/>
+            <br/>
+            <label className={style.signupLabel}>Password</label><br/><br/>
             <input 
               type="password" 
               placeholder="Password" 
               value={password} 
-              className="signup-input" 
+              className={style.signupInput} 
               id="password" 
-              onKeyDown={(e) => handleKeyDown(e, 'signup-button')} 
+              onKeyDown={(e) => handleKeyDown(e, 'signupButton')} 
               onChange={(e) => setPassword(e.target.value)} 
               required 
             /><br/>
-            <button type="submit" className="signup-button" id="signup-button">Sign Up</button>
+            <button type="submit" className={style.signupButton} id="signupButton">Sign Up</button>
           </form>
-          <p className="signup-footer">Already have an account? <Link to="/login">Login here</Link></p>
+          <p className={style.signupFooter}>Already have an account? <Link to="/login">Login here</Link></p>
         </div>
+        <LoginSlider />
       </div>
-      <Footer /> {/* Add Footer here */}
+      <Footer />
     </div>
   );
 };
