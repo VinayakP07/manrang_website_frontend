@@ -1,0 +1,310 @@
+/* General reset */
+* {
+  box-sizing: border-box;
+}
+
+.navContainer {
+  position: relative;
+  width: 100%;
+  z-index: 1000;
+  top: 0;
+  position: sticky;
+}
+
+.navBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #111111;
+  height: 80px;
+  z-index: 1000;
+  top: 0;
+  position: sticky;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoImage {
+  width: 80px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* Navigation buttons for large screens */
+.navButtons {
+  display: flex;
+  justify-content: space-around;
+  width: 50rem;
+}
+
+/* Individual navigation buttons */
+.navButton {
+  background-color: #111111;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.navButton:hover {
+  background-color: #777;
+}
+
+/* Dropdown arrow for Other Section */
+.dropdownArrow {
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+
+
+/* Right section with search, cart, profile (for large screens) */
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.search {
+  position: relative;
+  margin-left: auto;
+}
+
+
+/* Search and cart */
+.searchInput {
+  padding: 8px 30px 8px 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 17rem;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: gray;
+}
+
+
+.cart, .profile {
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+
+.profile {
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  
+}
+
+
+
+/* Profile dropdown */
+.profileDropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #222222;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.profileDropdown a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+
+.profileDropdown a:hover {
+  background-color: #777;
+}
+
+.horizontalList {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  background-color: #222222;
+  padding: 10px 0;
+  width: 100%;
+  position: relative; /* Changed to relative to avoid overlap */
+  /* margin-top: 10px; Create space between dropdown and main page content */
+  z-index: 1;
+}
+
+
+.horizontalList a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  background-color: #222222;
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out;
+  
+}
+
+.horizontalList a:hover {
+  background-color: #777;
+}
+
+
+.pageContent {
+  padding-top: 0rem; /* Adjust the content position to be below the navbar */
+  transition: padding-top 0.3s ease-in-out; /* Add smooth transition */
+}
+
+
+
+@media (min-width: 836px) and (max-width: 1000px) {
+.horizontalList a{
+  font-size: 13px;
+}
+
+.navBox{
+  height: 70px;
+}
+
+}
+
+/* Hamburger icon (left side, visible on small screens) */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Hamburger sliding menu (hidden by default) */
+.hamburgerMenu {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #222222;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 100;
+}
+
+/* Slide-in effect for hamburger menu */
+.hamburgerActive {
+  left: 0;
+}
+
+/* Close button for hamburger menu */
+.closeHamburger {
+  align-self: flex-end;
+  font-size: 24px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* Hamburger menu links */
+.hamburgerMenu a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 0;
+  width: 100%;
+  text-align: left;
+  font-size: 17px;
+}
+
+.hamburgerMenu a:hover {
+  background-color: #777;
+}
+
+
+
+/* Vertical dropdown content inside hamburger menu */
+.dropdownContent {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  gap: 5px;
+}
+
+.dropdownContent a {
+  color: white;
+  text-decoration: none;
+  padding: 8px;
+}
+
+.dropdownContent a:hover {
+  background-color: #777;
+}
+
+
+
+.search {
+  margin-left: 10px; /* Space between hamburger and search icon */
+  display: flex; /* Align items in the search section */
+  align-items: center; /* Center the search icon */
+}
+
+
+
+
+
+
+
+/* Media queries for small screens (below 835px) */
+@media (max-width: 835px) {
+  .navButtons {
+    display: none;
+  }
+
+  .navBox{
+    height: 60px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .rightSection {
+    display: none;
+  }
+
+  .pageContent {
+    padding-top: 0rem;
+  }
+
+.search{
+  display: none;
+}
+  .horizontalList {
+    display: none; /* Hide the horizontal list */
+  }
+}
