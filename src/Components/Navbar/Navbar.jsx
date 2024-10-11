@@ -1,23 +1,79 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import style from './Navbar.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false); // State for hamburger menu
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State for token presence
+  const profileRef = useRef(null); // Ref for the profile dropdown
+  const navRef = useRef(null); // Ref for the hamburger menu
+  const navigate = useNavigate(); // To programmatically navigate
 
+  // Check if token is present in localStorage
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token); // Set logged-in state based on token presence
+  }, []);
+
+  // Handle dropdown toggle for "Other Section"
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const toggleProfileDropdown = () => {
-    setIsProfileDropdownOpen(!isProfileDropdownOpen);
+  // Handle profile click based on login state
+  const handleProfileClick = () => {
+    if (isLoggedIn) {
+      setIsProfileDropdownOpen(!isProfileDropdownOpen); // Toggle dropdown if logged in
+    } else {
+      navigate('/login'); // Redirect to login if not logged in
+    }
   };
 
-  const toggleNav = () => {
-    setIsNavOpen(!isNavOpen); // Toggle hamburger menu visibility
+  // Handle "Your Orders" click
+  const handleOrderClick = () => {
+    if (isLoggedIn) {
+      navigate('/orders'); // Redirect to "Your Orders" if logged in
+    } else {
+      navigate('/login'); // Redirect to login if not logged in
+    }
   };
+
+  // Handle "Cart" click
+  const handleCartClick = () => {
+    if (isLoggedIn) {
+      navigate('/cart'); // Redirect to cart page if logged in
+    } else {
+      navigate('/login'); // Redirect to login if not logged in
+    }
+  };
+
+  // Toggle hamburger menu visibility
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
+  // Close profile dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setIsProfileDropdownOpen(false); // Close the dropdown if clicked outside
+      }
+
+      if (isNavOpen && navRef.current && !navRef.current.contains(event.target)) {
+        setIsNavOpen(false); // Close the nav if clicked outside
+      }
+    };
+
+    // Add event listener for clicks on the document
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Cleanup the event listener when component unmounts
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isNavOpen]);
 
   return (
     <>
@@ -29,15 +85,13 @@ const Navbar = () => {
             <i className={`fas fa-bars ${style.hamburgerIcon}`}></i>
           </div>
           
-          
-
           {/* Logo */}
           <div className={`${style.logo}`}>
             <Link to="/">
-            <img
-              src="https://i.ibb.co/J3FvgWQ/logo.png"
-              alt="Logo"
-              className={style.logoImage}
+              <img
+                src="https://i.ibb.co/J3FvgWQ/logo.png"
+                alt="Logo"
+                className={style.logoImage}
               />
             </Link>
           </div>
@@ -49,7 +103,7 @@ const Navbar = () => {
               Other Section
               <i className={`fas fa-caret-down ${style.dropdownArrow}`}></i>
             </div>
-            <button className={style.navButton}>Your Orders</button>
+            <button className={style.navButton} onClick={handleOrderClick}>Your Orders</button>
           </div>
 
           {/* Right section with search, cart, profile (larger screens) */}
@@ -63,20 +117,23 @@ const Navbar = () => {
               <i className={`fas fa-search ${style.searchIcon}`}></i>
             </div>
 
-            <div className={style.cart}>
+            {/* Cart icon */}
+            <div className={style.cart} onClick={handleCartClick}>
               <i className="fas fa-shopping-cart"></i>
             </div>
 
-            <div className={style.profile} onClick={toggleProfileDropdown}>
+            {/* Profile icon */}
+            <div className={style.profile} onClick={handleProfileClick} ref={profileRef}>
               <i className="fas fa-user"></i>
             </div>
 
-            {isProfileDropdownOpen && (
+            {/* Profile dropdown only if logged in */}
+            {isLoggedIn && isProfileDropdownOpen && (
               <div className={style.profileDropdown}>
-                <a href="#">Your Profile</a>
-                <a href="#">Track Your Order</a>
-                <a href="#">Customer Service</a>
-                <a href="#">Sign Out</a>
+                <a href="">Your Profile</a>
+                <a href="">Track Your Order</a>
+                <a href="">Customer Service</a>
+                <a href="">Sign Out</a>
               </div>
             )}
           </div>
@@ -85,47 +142,49 @@ const Navbar = () => {
         {/* Dropdown content for "Other Section" */}
         {isDropdownOpen && (
           <div className={style.horizontalList}>
-            <a href="#">Kurties</a>
-            <a href="#">Pant Set</a>
-            <a href="#">Short Kurties & Tops</a>
-            <a href="#">Pants</a>
-            <a href="#">Dupatta & Stole</a>
-            <a href="#">Party Wear</a>
-            <a href="#">Gown & One Piece</a>
-            <a href="#">Night Wear</a>
+            <div>Kurties</div>
+            <div>Pant Set</div>
+            <div>Short Kurties & Tops</div>
+            <div>Pants</div>
+            <div>Dupatta & Stole</div>
+            <div>Party Wear</div>
+            <div>Gown & One Piece</div>
+            <div>Night Wear</div>
           </div>
         )}
       </div>
 
       {/* Hamburger sliding menu for small screens */}
-      <div className={`${style.hamburgerMenu} ${isNavOpen ? style.hamburgerActive : ''}`}>
+      <div
+        className={`${style.hamburgerMenu} ${isNavOpen ? style.hamburgerActive : ''}`}
+        ref={navRef}
+      >
         <button onClick={toggleNav} className={style.closeHamburger}>
           <i className="fas fa-times"></i>
         </button>
 
-        <a href="#">Home</a>
-        <a href="#" onClick={toggleDropdown}>
+        {/* Show only essential links */}
+        <Link className={style.hamBtn} to="/">Home</Link>
+        <div className={style.hamBtn} onClick={toggleDropdown}>
           Other Section <i className={`fas fa-caret-down ${style.dropdownArrow}`}></i>
-        </a>
+        </div>
 
         {isDropdownOpen && (
           <div className={style.dropdownContent}>
-            <a href="#">Kurties</a>
-            <a href="#">Pant Set</a>
-            <a href="#">Short Kurties & Tops</a>
-            <a href="#">Pants</a>
-            <a href="#">Dupatta & Stole</a>
-            <a href="#">Party Wear</a>
-            <a href="#">Gown & One Piece</a>
-            <a href="#">Night Wear</a>
+            <div>Kurties</div>
+            <div>Pant Set</div>
+            <div>Short Kurties & Tops</div>
+            <div>Pants</div>
+            <div>Dupatta & Stole</div>
+            <div>Party Wear</div>
+            <div>Gown & One Piece</div>
+            <div>Night Wear</div>
           </div>
         )}
 
-        <a href="#">Your Orders</a>
-        <a href="#">Your Profile</a>
-        <a href="#">Track Your Order</a>
-        <a href="#">Customer Service</a>
-        <a href="#">Sign Out</a>
+        {/* Conditional rendering based on login state */}
+        <div onClick={handleOrderClick} className={style.hamBtn}>Your Orders</div>
+        <div onClick={handleProfileClick} className={style.hamBtn}>Your Profile</div>
       </div>
 
       {/* Main page content */}
