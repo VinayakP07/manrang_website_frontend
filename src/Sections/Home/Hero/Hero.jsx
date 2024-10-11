@@ -1,6 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './Hero.module.css';
 
 const slides = [
@@ -20,14 +18,14 @@ const slides = [
     description: 'Exclusive Designs with Special Discounts',
     button: 'Explore Now',
   },
-  // {
-  //   id: 3,
-  //   image: 'https://i.ibb.co/hD5dZX2/sale-img.png',
-  //   title: 'SALE',
-  //   subtitle: '',
-  //   description: '',
-  //   button: 'Grab the Offer',
-  // },
+  {
+    id: 3,
+    image: 'https://i.ibb.co/k9y1ctn/Section-1-1.png',
+    title: 'Festive Collection',
+    subtitle: 'New Arrivals for the Festive Season!',
+    description: 'Exclusive Designs with Special Discounts',
+    button: 'Explore Now',
+  }
 ];
 
 const slides2 = [
@@ -48,34 +46,41 @@ const slides2 = [
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Update isMobile state based on window width
-  const handleResize = () => {
+  const handleResize = useCallback(() => {
     setIsMobile(window.innerWidth < 570);
-  };
+  }, []);
 
-  // UseEffect to handle window resize events
   useEffect(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [handleResize]);
 
-  // Change slide automatically every 4 seconds
+  const moveSlide = useCallback((direction) => {
+    if (isTransitioning) return;
+
+    setIsTransitioning(true);
+    const slideArray = isMobile ? slides2 : slides;
+    setCurrentSlide((prevSlide) => 
+      (prevSlide + direction + slideArray.length) % slideArray.length
+    );
+
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 1000); // Changed from 500 to 1000 milliseconds
+  }, [isMobile, isTransitioning]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       moveSlide(1);
-    }, 4000); // Change every 4 seconds
+    }, 4000);
 
-    return () => clearInterval(interval); // Cleanup on unmount
-  }, [currentSlide]);
-
-  const moveSlide = (direction) => {
-    const newIndex = (currentSlide + direction + (isMobile ? slides2.length : slides.length)) % (isMobile ? slides2.length : slides.length);
-    setCurrentSlide(newIndex);
-  };
+    return () => clearInterval(interval);
+  }, [moveSlide]);
 
   return (
     <div className={styles.sliderContainer}>
@@ -83,10 +88,13 @@ const Hero = () => {
         {(isMobile ? slides2 : slides).map((slide, index) => (
           <div
             key={slide.id}
-            className={`${styles.slide} ${index === currentSlide ? styles.active : ''}`}
+            className={`${styles.slide} ${index === currentSlide ? styles.active : ''} ${isTransitioning ? styles.transitioning : ''}`}
+            style={{
+              transform: `translateX(${(index - currentSlide) * 100}%)`,
+              zIndex: index === currentSlide ? 1 : 0
+            }}
           >
             <img src={slide.image} alt={`slide-${slide.id}`} className={styles.slideImage} />
-            {/* Only render text content if screen width is >= 570px */}
             {!isMobile && (
               <div className={styles.slideContent}>
                 <h1>{slide.title}</h1>
@@ -101,12 +109,22 @@ const Hero = () => {
         ))}
       </div>
 
-      <button className={`${styles.sliderBtn} ${styles.prevBtn}`} onClick={() => moveSlide(-1)}>
+      <button className={`${styles.sliderBtn} ${styles.prevBtn}`} onClick={() => moveSlide(-1)} aria-label="Previous slide">
         &#10094;
       </button>
-      <button className={`${styles.sliderBtn} ${styles.nextBtn}`} onClick={() => moveSlide(1)}>
+      <button className={`${styles.sliderBtn} ${styles.nextBtn}`} onClick={() => moveSlide(1)} aria-label="Next slide">
         &#10095;
       </button>
+
+      <div className={styles.indicators}>
+        {(isMobile ? slides2 : slides).map((_, index) => (
+          <span
+            key={index}
+            className={`${styles.indicator} ${index === currentSlide ? styles.activeIndicator : ''}`}
+            onClick={() => setCurrentSlide(index)}
+          ></span>
+        ))}
+      </div>
     </div>
   );
 };
