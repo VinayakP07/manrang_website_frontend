@@ -100,7 +100,7 @@ const NavbarAdmin = () => {
                 Other Section
                 <i className={`fas fa-caret-down ${style.dropdownArrow}`}></i>
               </div>
-              <button className={style.navButton} onClick={handleOrderClick}>Orders</button>
+              <button className={style.navButton}>Orders</button>
             </div>
   
             {/* Right section with search, cart, profile (larger screens) */}
