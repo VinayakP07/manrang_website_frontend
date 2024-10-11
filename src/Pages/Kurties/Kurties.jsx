@@ -5,6 +5,7 @@ import styles from './Kurties.module.css';
 import Navbar from '../../Components/Navbar/Navbar';
 import NavbarAdmin from '../../Components/Navbar/NavbarAdmin'; // Import NavbarAdmin
 import Footer from '../../Components/Footer/Footer';
+import HomeCards from '../../Components/HomeCards/HomeCards';
 
 const Kurties = () => {
   const [isAdmin, setIsAdmin] = useState(false); // State to track if the user is admin
@@ -133,7 +134,7 @@ const Kurties = () => {
       {/* Conditionally render Navbar or NavbarAdmin based on isAdmin state */}
       {isAdmin ? <NavbarAdmin /> : <Navbar />}
       
-            
+            <HomeCards title={productData1[0].title}/>
 
       <Footer />
     </>
