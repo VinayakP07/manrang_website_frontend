@@ -1,75 +1,64 @@
-import { useState, useEffect, useRef } from 'react';
-import style from './Navbar.module.css';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import style from './Navbar.module.css';
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const [isNavOpen, setIsNavOpen] = useState(false); // State for hamburger menu
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State for token presence
-  const profileRef = useRef(null); // Ref for the profile dropdown
-  const navRef = useRef(null); // Ref for the hamburger menu
-  const navigate = useNavigate(); // To programmatically navigate
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const profileRef = useRef(null);
+  const navRef = useRef(null);
+  const navigate = useNavigate();
 
-  // Check if token is present in localStorage
   useEffect(() => {
     const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token); // Set logged-in state based on token presence
+    setIsLoggedIn(!!token);
   }, []);
 
-  // Handle dropdown toggle for "Other Section"
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // Handle profile click based on login state
   const handleProfileClick = () => {
     if (isLoggedIn) {
-      setIsProfileDropdownOpen(!isProfileDropdownOpen); // Toggle dropdown if logged in
+      setIsProfileDropdownOpen(!isProfileDropdownOpen);
     } else {
-      navigate('/login'); // Redirect to login if not logged in
+      navigate('/login');
     }
   };
 
-  // Handle "Your Orders" click
   const handleOrderClick = () => {
     if (isLoggedIn) {
-      navigate('/orders'); // Redirect to "Your Orders" if logged in
+      navigate('/orders');
     } else {
-      navigate('/login'); // Redirect to login if not logged in
+      navigate('/login');
     }
   };
 
-  // Handle "Cart" click
   const handleCartClick = () => {
     if (isLoggedIn) {
-      navigate('/cart'); // Redirect to cart page if logged in
+      navigate('/cart');
     } else {
-      navigate('/login'); // Redirect to login if not logged in
+      navigate('/login');
     }
   };
 
-  // Toggle hamburger menu visibility
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
   };
 
-  // Close profile dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
-        setIsProfileDropdownOpen(false); // Close the dropdown if clicked outside
+        setIsProfileDropdownOpen(false);
       }
-
       if (isNavOpen && navRef.current && !navRef.current.contains(event.target)) {
-        setIsNavOpen(false); // Close the nav if clicked outside
+        setIsNavOpen(false);
       }
     };
 
-    // Add event listener for clicks on the document
     document.addEventListener('mousedown', handleClickOutside);
-
-    // Cleanup the event listener when component unmounts
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -79,13 +68,10 @@ const Navbar = () => {
     <>
       <div className={style.navContainer}>
         <div className={`${style.navBox}`}>
-          
-          {/* Hamburger button for small screens */}
           <div className={style.hamburger} onClick={toggleNav}>
             <i className={`fas fa-bars ${style.hamburgerIcon}`}></i>
           </div>
           
-          {/* Logo */}
           <div className={`${style.logo}`}>
             <Link to="/">
               <img
@@ -96,17 +82,15 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Navigation buttons for larger screens */}
           <div className={`${style.navButtons} ${isNavOpen ? style.show : ''}`}>
             <Link to="/"><button className={style.navButton}>Home</button></Link>
             <div className={style.navButton} onClick={toggleDropdown}>
               Other Section
-              <i className={`fas fa-caret-down ${style.dropdownArrow}`}></i>
+              <i className={`fas fa-caret-down ${style.dropdownArrow} ${isDropdownOpen ? style.rotate : ''}`}></i>
             </div>
             <button className={style.navButton} onClick={handleOrderClick}>Your Orders</button>
           </div>
 
-          {/* Right section with search, cart, profile (larger screens) */}
           <div className={style.rightSection}>
             <div className={style.search}>
               <input
@@ -117,17 +101,14 @@ const Navbar = () => {
               <i className={`fas fa-search ${style.searchIcon}`}></i>
             </div>
 
-            {/* Cart icon */}
             <div className={style.cart} onClick={handleCartClick}>
               <i className="fas fa-shopping-cart"></i>
             </div>
 
-            {/* Profile icon */}
             <div className={style.profile} onClick={handleProfileClick} ref={profileRef}>
               <i className="fas fa-user"></i>
             </div>
 
-            {/* Profile dropdown only if logged in */}
             {isLoggedIn && isProfileDropdownOpen && (
               <div className={style.profileDropdown}>
                 <a href="">Your Profile</a>
@@ -139,9 +120,8 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Dropdown content for "Other Section" */}
         {isDropdownOpen && (
-          <div className={style.horizontalList}>
+          <div className={`${style.horizontalList} ${isDropdownOpen ? style.show : ''}`}>
             <div>Kurties</div>
             <div>Pant Set</div>
             <div>Short Kurties & Tops</div>
@@ -154,7 +134,6 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Hamburger sliding menu for small screens */}
       <div
         className={`${style.hamburgerMenu} ${isNavOpen ? style.hamburgerActive : ''}`}
         ref={navRef}
@@ -163,10 +142,9 @@ const Navbar = () => {
           <i className="fas fa-times"></i>
         </button>
 
-        {/* Show only essential links */}
         <Link className={style.hamBtn} to="/">Home</Link>
         <div className={style.hamBtn} onClick={toggleDropdown}>
-          Other Section <i className={`fas fa-caret-down ${style.dropdownArrow}`}></i>
+          Other Section <i className={`fas fa-caret-down ${style.dropdownArrow} ${isDropdownOpen ? style.rotate : ''}`}></i>
         </div>
 
         {isDropdownOpen && (
@@ -182,12 +160,10 @@ const Navbar = () => {
           </div>
         )}
 
-        {/* Conditional rendering based on login state */}
         <div onClick={handleOrderClick} className={style.hamBtn}>Your Orders</div>
         <div onClick={handleProfileClick} className={style.hamBtn}>Your Profile</div>
       </div>
 
-      {/* Main page content */}
       <div className={style.pageContent}>
         {/* Your main page content goes here */}
       </div>
