@@ -18,7 +18,7 @@ const Navbar = () => {
   }, []);
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+    setIsDropdownOpen((prev) => !prev);  // Toggle dropdown visibility for "Other Section"
   };
 
   const handleProfileClick = () => {
@@ -46,7 +46,7 @@ const Navbar = () => {
   };
 
   const toggleNav = () => {
-    setIsNavOpen(!isNavOpen);
+    setIsNavOpen((prev) => !prev);
   };
 
   useEffect(() => {
@@ -65,7 +65,6 @@ const Navbar = () => {
     };
   }, [isNavOpen]);
 
-  // Handle item click to close dropdown
   const handleDropdownItemClick = () => {
     setIsDropdownOpen(false); // Close dropdown when an item is clicked
   };
@@ -73,14 +72,14 @@ const Navbar = () => {
   return (
     <>
       <div className={style.navContainer}>
-        <div className={`${style.navBox}`}>
+        <div className={style.navBox}>
 
           {/* Hamburger button for small screens */}
           <div className={style.hamburger} onClick={toggleNav}>
             <i className={`fas fa-bars ${style.hamburgerIcon}`}></i>
           </div>
 
-          <div className={`${style.logo}`}>
+          <div className={style.logo}>
             <Link to="/">
               <img
                 src="https://i.ibb.co/J3FvgWQ/logo.png"
@@ -128,6 +127,7 @@ const Navbar = () => {
           </div>
         </div>
 
+        {/* Dropdown for "Other Section" */}
         {isDropdownOpen && (
           <div className={style.horizontalList}>
             <Link to="/kurties"><div onClick={handleDropdownItemClick}>Kurties</div></Link>
@@ -170,10 +170,6 @@ const Navbar = () => {
 
         <div onClick={handleOrderClick} className={style.hamBtn}>Your Orders</div>
         <div onClick={handleProfileClick} className={style.hamBtn}>Your Profile</div>
-      </div>
-
-      <div className={style.pageContent}>
-        {/* Your main page content goes here */}
       </div>
     </>
   );
