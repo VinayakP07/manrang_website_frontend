@@ -1,3 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import style from './Login.module.css';
@@ -75,7 +78,7 @@ const Login = ({ onLogin }) => {
           <p className={style.loginOr}>or</p>
           <button className={style.loginGoogleButton}>Login via Google</button>
           <p className={style.loginFooter}>
-            Don’t have an account? <Link to="/signup">Sign up here</Link>
+            Don't have an account? <Link to="/signup">Sign up here</Link>
           </p>
           <p className={style.forgotPassword} onClick={() => setShowResetModal(true)}><u>Forgot Password?</u></p>
         </div>

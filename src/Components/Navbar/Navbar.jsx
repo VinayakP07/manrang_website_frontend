@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import style from './Navbar.module.css';
@@ -17,7 +18,7 @@ const Navbar = () => {
   }, []);
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+    setIsDropdownOpen((prev) => !prev);  // Toggle dropdown visibility for "Other Section"
   };
 
   const handleProfileClick = () => {
@@ -45,7 +46,7 @@ const Navbar = () => {
   };
 
   const toggleNav = () => {
-    setIsNavOpen(!isNavOpen);
+    setIsNavOpen((prev) => !prev);
   };
 
   useEffect(() => {
@@ -64,15 +65,21 @@ const Navbar = () => {
     };
   }, [isNavOpen]);
 
+  const handleDropdownItemClick = () => {
+    setIsDropdownOpen(false); // Close dropdown when an item is clicked
+  };
+
   return (
     <>
       <div className={style.navContainer}>
-        <div className={`${style.navBox}`}>
+        <div className={style.navBox}>
+
+          {/* Hamburger button for small screens */}
           <div className={style.hamburger} onClick={toggleNav}>
             <i className={`fas fa-bars ${style.hamburgerIcon}`}></i>
           </div>
-          
-          <div className={`${style.logo}`}>
+
+          <div className={style.logo}>
             <Link to="/">
               <img
                 src="https://i.ibb.co/J3FvgWQ/logo.png"
@@ -120,16 +127,17 @@ const Navbar = () => {
           </div>
         </div>
 
+        {/* Dropdown for "Other Section" */}
         {isDropdownOpen && (
-          <div className={`${style.horizontalList} ${isDropdownOpen ? style.show : ''}`}>
-            <div>Kurties</div>
-            <div>Pant Set</div>
-            <div>Short Kurties & Tops</div>
-            <div>Pants</div>
-            <div>Dupatta & Stole</div>
-            <div>Party Wear</div>
-            <div>Gown & One Piece</div>
-            <div>Night Wear</div>
+          <div className={style.horizontalList}>
+            <Link to="/kurties"><div onClick={handleDropdownItemClick}>Kurties</div></Link>
+            <div onClick={handleDropdownItemClick}>Pant Set</div>
+            <div onClick={handleDropdownItemClick}>Short Kurties & Tops</div>
+            <div onClick={handleDropdownItemClick}>Pants</div>
+            <div onClick={handleDropdownItemClick}>Dupatta & Stole</div>
+            <div onClick={handleDropdownItemClick}>Party Wear</div>
+            <div onClick={handleDropdownItemClick}>Gown & One Piece</div>
+            <div onClick={handleDropdownItemClick}>Night Wear</div>
           </div>
         )}
       </div>
@@ -149,23 +157,19 @@ const Navbar = () => {
 
         {isDropdownOpen && (
           <div className={style.dropdownContent}>
-            <div>Kurties</div>
-            <div>Pant Set</div>
-            <div>Short Kurties & Tops</div>
-            <div>Pants</div>
-            <div>Dupatta & Stole</div>
-            <div>Party Wear</div>
-            <div>Gown & One Piece</div>
-            <div>Night Wear</div>
+            <Link to="/kurties"><div onClick={handleDropdownItemClick}>Kurties</div></Link>
+            <div onClick={handleDropdownItemClick}>Pant Set</div>
+            <div onClick={handleDropdownItemClick}>Short Kurties & Tops</div>
+            <div onClick={handleDropdownItemClick}>Pants</div>
+            <div onClick={handleDropdownItemClick}>Dupatta & Stole</div>
+            <div onClick={handleDropdownItemClick}>Party Wear</div>
+            <div onClick={handleDropdownItemClick}>Gown & One Piece</div>
+            <div onClick={handleDropdownItemClick}>Night Wear</div>
           </div>
         )}
 
         <div onClick={handleOrderClick} className={style.hamBtn}>Your Orders</div>
         <div onClick={handleProfileClick} className={style.hamBtn}>Your Profile</div>
-      </div>
-
-      <div className={style.pageContent}>
-        {/* Your main page content goes here */}
       </div>
     </>
   );

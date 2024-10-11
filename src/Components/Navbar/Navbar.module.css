@@ -1,7 +1,13 @@
+/* General Styles */
 * {
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
+/* Navbar Container */
 .navContainer {
   position: sticky;
   width: 100%;
@@ -10,6 +16,7 @@
   transition: all 0.3s ease;
 }
 
+/* Navbar Box */
 .navBox {
   display: flex;
   justify-content: space-between;
@@ -23,6 +30,7 @@
   transition: all 0.3s ease;
 }
 
+/* Logo Styles */
 .logo {
   display: flex;
   justify-content: center;
@@ -40,6 +48,7 @@
   transform: scale(1.05);
 }
 
+/* Navbar Buttons */
 .navButtons {
   display: flex;
   justify-content: space-around;
@@ -64,6 +73,7 @@
   transform: translateY(-2px);
 }
 
+/* Dropdown Arrow */
 .dropdownArrow {
   margin-left: 5px;
   font-size: 12px;
@@ -75,25 +85,19 @@
   transform: rotate(180deg);
 }
 
-.hamBtn {
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
 .hamBtn:hover {
   color: #ddd;
   transform: translateX(5px);
 }
 
+/* Right Section */
 .rightSection {
   display: flex;
   align-items: center;
   gap: 40px;
 }
 
+/* Search Bar */
 .search {
   position: relative;
   margin-left: auto;
@@ -105,6 +109,12 @@
   border-radius: 4px;
   font-size: 14px;
   width: 17rem;
+  transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+  width: 20rem;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
 
@@ -127,18 +137,22 @@
   color: #333;
 }
 
-.cart, .profile {
+/* Cart & Profile */
+.cart,
+.profile {
   font-size: 24px;
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.cart:hover, .profile:hover {
+.cart:hover,
+.profile:hover {
   color: #ddd;
   transform: scale(1.1);
 }
 
+/* Profile Dropdown */
 .profileDropdown {
   position: absolute;
   top: 50px;
@@ -150,7 +164,7 @@
   flex-direction: column;
   width: 150px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 1001;  /* Ensure it's on top */
   opacity: 0;
   transform: translateY(-10px);
   transition: all 0.3s ease;
@@ -173,6 +187,7 @@
   transform: translateX(5px);
 }
 
+/* Horizontal List for Dropdown (Other Section) */
 .horizontalList {
   display: flex;
   justify-content: space-around;
@@ -180,9 +195,10 @@
   background-color: #222222;
   padding: 10px 0;
   width: 100%;
-  position: relative;
-  z-index: 1;
-  opacity: 0;
+  position: absolute; /* Ensure it's floating above other elements */
+  top: 100%;  /* Position it directly below the parent */
+  left: 0;
+  z-index: 1000;  /* Ensure it's on top of other elements */
   transform: translateY(-10px);
   transition: all 0.3s ease;
 }
@@ -203,15 +219,11 @@
 }
 
 .horizontalList div:hover {
-  background-color: #333;
-  transform: translateY(-2px);
+  background-color: #777;
+  cursor: pointer;
 }
 
-.pageContent {
-  padding-top: 0rem;
-  transition: padding-top 0.3s ease-in-out;
-}
-
+/* Media Query for Screen Size */
 @media (min-width: 836px) and (max-width: 1000px) {
   .horizontalList div {
     font-size: 13px;
@@ -286,6 +298,7 @@
   transform: translateX(5px);
 }
 
+/* Dropdown Content (for smaller screens) */
 .dropdownContent {
   display: flex;
   flex-direction: column;
@@ -308,6 +321,7 @@
   transform: translateX(5px);
 }
 
+/* Media Query for Mobile */
 @media (max-width: 835px) {
   .navButtons {
     display: none;
