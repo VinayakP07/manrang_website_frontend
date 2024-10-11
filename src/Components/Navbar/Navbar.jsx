@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import style from './Navbar.module.css';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -32,16 +33,18 @@ const Navbar = () => {
 
           {/* Logo */}
           <div className={`${style.logo}`}>
+            <Link to="/">
             <img
               src="https://i.ibb.co/J3FvgWQ/logo.png"
               alt="Logo"
               className={style.logoImage}
-            />
+              />
+            </Link>
           </div>
 
           {/* Navigation buttons for larger screens */}
           <div className={`${style.navButtons} ${isNavOpen ? style.show : ''}`}>
-            <button className={style.navButton}>Home</button>
+            <Link to="/"><button className={style.navButton}>Home</button></Link>
             <div className={style.navButton} onClick={toggleDropdown}>
               Other Section
               <i className={`fas fa-caret-down ${style.dropdownArrow}`}></i>

@@ -12,6 +12,7 @@ footer {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap; /* Allows sections to wrap in smaller screens */
+  margin-top: 5rem;
 }
 
 .footer_section {
