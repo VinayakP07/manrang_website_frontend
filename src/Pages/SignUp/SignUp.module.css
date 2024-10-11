@@ -7,7 +7,7 @@
 .signupContainer {
   display: flex;
   flex: 1;
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -68,6 +68,7 @@
 .signupFooter {
   text-align: center; /* Center footer text */
   margin-top: 1rem;
+  color: black;
 }
 
 .signupFooter a {
