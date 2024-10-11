@@ -1,74 +1,25 @@
-/* .sliderContainer {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0;
-  margin: 0;
-  flex: 1;
-  position: relative;
-  max-width: 450px;
-  height: 600px;
-  padding-left: 20px;
-  box-shadow: 0 10px 10px rgba(98, 83, 83, 0.1);
-}
-
-.sliderImage {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(98, 83, 83, 0.1);
-}
-
-.dotsContainer {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 5px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.dotActive {
-  background-color: #717171;
-}
-
-@media (max-width: 768px) {
-  .sliderContainer {
-    display: none; 
-  }
-} */
-
-
 .sliderContainer {
+  flex: 1;
   display: flex;
   justify-content: flex-end;
   padding: 0;
   margin: 0;
-  flex: 1;
-  position: relative;
-  max-width: 450px; /* Maximum width of the slider */
-  height: 600px;
-  padding-left: 20px;
+  max-width: 450px;
+  height: 600px; /* Keep the height consistent */
   box-shadow: 0 10px 10px rgba(98, 83, 83, 0.1);
+  position: relative;
 }
 
+/* Slider image styling */
 .sliderImage {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover; /* Fill the container while keeping aspect ratio */
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(98, 83, 83, 0.1);
 }
 
+/* Dots for image slider */
 .dotsContainer {
   position: absolute;
   bottom: 15px;
@@ -92,17 +43,8 @@
 }
 
 /* Media Queries for Responsiveness */
-
-/* Hide the slider on smaller screens */
-@media (max-width: 768px) {
-  .sliderContainer {
-    display: none; /* Hide slider on mobile screens */
-  }
-}
-
-/* Hide the slider if the screen width is below 1024px */
 @media (max-width: 1024px) {
   .sliderContainer {
-    display: none; /* Hide slider on tablets or small laptops */
+    display: none; /* Hide slider on smaller screens */
   }
 }
