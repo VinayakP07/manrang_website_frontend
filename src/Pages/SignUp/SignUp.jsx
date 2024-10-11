@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import style from './SignUp.module.css'; // Importing CSS module
@@ -8,6 +9,8 @@ import Footer from '../../Components/Footer/Footer';
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [phoneNo, setPhoneNo] = useState('');
+  const [username, setUsername] = useState('');
   const navigate = useNavigate();
 
   const handleKeyDown = (e, nextInputId) => {
@@ -42,6 +45,18 @@ const SignUp = () => {
           <p className={style.signupDescription}>Create an account to get started.</p><br/>
           
           <form onSubmit={handleSubmit}>
+
+          <label htmlFor="username" className={style.signupLabel}>Username</label><br /><br />
+          <input
+            placeholder="Username" 
+            value={username} 
+            className={style.signupInput} 
+            id="username" 
+            onKeyDown={(e) => handleKeyDown(e, 'signupButton')} 
+            onChange={(e) => setUsername(e.target.value)} 
+            required
+          /><br/>
+
             <label className={style.signupLabel}>Email Address</label><br/><br/>
             <input 
               type="email" 
@@ -53,7 +68,8 @@ const SignUp = () => {
               onChange={(e) => setEmail(e.target.value)} 
               required 
             /><br/>
-            <br/>
+            
+
             <label className={style.signupLabel}>Password</label><br/><br/>
             <input 
               type="password" 
@@ -65,6 +81,23 @@ const SignUp = () => {
               onChange={(e) => setPassword(e.target.value)} 
               required 
             /><br/>
+
+            <label className={style.signupLabel}>Phone Number</label><br/><br/>
+            <input 
+            placeholder="Phone Number" 
+            value={phoneNo} 
+            className={style.signupInput} 
+            id="phoneNo" 
+            onKeyDown={(e) => handleKeyDown(e, 'signupButton')} 
+            onChange={(e) => {
+              // Allow only numbers and limit to 10 digits
+              const newValue = e.target.value.replace(/\D/g, '').slice(0, 10); 
+              setPhoneNo(newValue);
+            }} 
+            maxLength={10}  // Limit input to 10 characters
+            minLength={10}
+            required 
+/><br/>
             <button type="submit" className={style.signupButton} id="signupButton">Sign Up</button>
           </form>
           <p className={style.signupFooter}>Already have an account? <Link to="/login">Login here</Link></p>

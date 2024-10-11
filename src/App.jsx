@@ -2,8 +2,11 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './Pages/Home/Home';
+import AdminHome from './Pages/Home/HomeAdmin';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/SignUp/SignUp';
+import HomeAdmin from './Pages/Home/HomeAdmin';
+import Kurties from './Pages/Kurties/Kurties';
 
 function App() {
 
@@ -14,6 +17,14 @@ function App() {
 
         <Route 
           exact path="/" element = {<Home/>}
+        />
+
+        <Route 
+          exact path="/adminHome" element = {<HomeAdmin/>}
+        />
+
+        <Route 
+          exact path="/kurties" element = {<Kurties/>}
         />
 
         <Route 

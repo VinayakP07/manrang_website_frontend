@@ -1,14 +1,17 @@
-/* General reset */
 * {
   box-sizing: border-box;
 }
 
+a{
+  text-decoration: none;
+}
+
 .navContainer {
-  position: relative;
+  position: sticky;
   width: 100%;
   z-index: 1000;
   top: 0;
-  position: sticky;
+  transition: all 0.3s ease;
 }
 
 .navBox {
@@ -21,9 +24,9 @@
   z-index: 1000;
   top: 0;
   position: sticky;
+  transition: all 0.3s ease;
 }
 
-/* Logo */
 .logo {
   display: flex;
   justify-content: center;
@@ -34,16 +37,19 @@
   width: 80px;
   height: 50px;
   object-fit: contain;
+  transition: transform 0.3s ease;
 }
 
-/* Navigation buttons for large screens */
+.logoImage:hover {
+  transform: scale(1.05);
+}
+
 .navButtons {
   display: flex;
   justify-content: space-around;
   width: 50rem;
 }
 
-/* Individual navigation buttons */
 .navButton {
   background-color: #111111;
   color: white;
@@ -54,29 +60,38 @@
   font-size: 14px;
   text-align: center;
   text-decoration: none;
-  transition: background-color 0.3s ease-in-out;
+  transition: all 0.3s ease;
 }
 
 .navButton:hover {
-  background-color: #777;
+  background-color: #333;
+  transform: translateY(-2px);
 }
 
-/* Dropdown arrow for Other Section */
 .dropdownArrow {
   margin-left: 5px;
   font-size: 12px;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.hamBtn{
+.rotate {
+  transform: rotate(180deg);
+}
+
+.hamBtn {
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
   cursor: pointer;
   font-weight: 600;
+  transition: all 0.3s ease;
 }
 
+.hamBtn:hover {
+  color: #ddd;
+  transform: translateX(5px);
+}
 
-/* Right section with search, cart, profile (for large screens) */
 .rightSection {
   display: flex;
   align-items: center;
@@ -88,14 +103,18 @@
   margin-left: auto;
 }
 
-
-/* Search and cart */
 .searchInput {
   padding: 8px 30px 8px 15px;
   border: none;
   border-radius: 4px;
   font-size: 14px;
   width: 17rem;
+  transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+  width: 20rem;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .searchIcon {
@@ -105,27 +124,25 @@
   transform: translateY(-50%);
   font-size: 16px;
   color: gray;
+  transition: all 0.3s ease;
 }
 
+.searchInput:focus + .searchIcon {
+  color: #333;
+}
 
 .cart, .profile {
   font-size: 24px;
   color: white;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-
-.profile {
-  font-size: 24px;
-  color: white;
-  cursor: pointer;
-  position: relative;
-  
+.cart:hover, .profile:hover {
+  color: #ddd;
+  transform: scale(1.1);
 }
 
-
-
-/* Profile dropdown */
 .profileDropdown {
   position: absolute;
   top: 50px;
@@ -138,17 +155,26 @@
   width: 150px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.profileDropdown.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .profileDropdown a {
   color: white;
   text-decoration: none;
   padding: 10px;
+  transition: all 0.3s ease;
 }
 
-
 .profileDropdown a:hover {
-  background-color: #777;
+  background-color: #333;
+  transform: translateX(5px);
 }
 
 .horizontalList {
@@ -158,54 +184,61 @@
   background-color: #222222;
   padding: 10px 0;
   width: 100%;
-  position: relative; /* Changed to relative to avoid overlap */
-  /* margin-top: 10px; Create space between dropdown and main page content */
+  position: relative;
   z-index: 1;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
 }
 
+.horizontalList.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-.horizontalList a {
+.horizontalList div {
   color: white;
   text-decoration: none;
   padding: 8px 12px;
   background-color: #222222;
   border-radius: 4px;
-  transition: background-color 0.3s ease-in-out;
-  
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.horizontalList a:hover {
+.horizontalList div:hover {
   background-color: #777;
+  cursor: pointer;
 }
-
 
 .pageContent {
-  padding-top: 0rem; /* Adjust the content position to be below the navbar */
-  transition: padding-top 0.3s ease-in-out; /* Add smooth transition */
+  padding-top: 0rem;
+  transition: padding-top 0.3s ease-in-out;
 }
-
-
 
 @media (min-width: 836px) and (max-width: 1000px) {
-.horizontalList a{
-  font-size: 13px;
+  .horizontalList div {
+    font-size: 13px;
+  }
+
+  .navBox {
+    height: 70px;
+  }
 }
 
-.navBox{
-  height: 70px;
-}
-
-}
-
-/* Hamburger icon (left side, visible on small screens) */
 .hamburger {
   display: none;
   font-size: 24px;
   color: white;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-/* Hamburger sliding menu (hidden by default) */
+.hamburger:hover {
+  color: #ddd;
+  transform: scale(1.1);
+}
+
 .hamburgerMenu {
   position: fixed;
   top: 0;
@@ -218,16 +251,14 @@
   justify-content: flex-start;
   align-items: flex-start;
   padding: 20px;
-  transition: left 0.3s ease;
+  transition: all 0.3s ease;
   z-index: 100;
 }
 
-/* Slide-in effect for hamburger menu */
 .hamburgerActive {
   left: 0;
 }
 
-/* Close button for hamburger menu */
 .closeHamburger {
   align-self: flex-end;
   font-size: 24px;
@@ -236,9 +267,14 @@
   border: none;
   cursor: pointer;
   margin-bottom: 10px;
+  transition: all 0.3s ease;
 }
 
-/* Hamburger menu links */
+.closeHamburger:hover {
+  color: #ddd;
+  transform: scale(1.1);
+}
+
 .hamburgerMenu a {
   color: white;
   text-decoration: none;
@@ -246,15 +282,14 @@
   width: 100%;
   text-align: left;
   font-size: 17px;
+  transition: all 0.3s ease;
 }
 
 .hamburgerMenu a:hover {
-  background-color: #777;
+  background-color: #333;
+  transform: translateX(5px);
 }
 
-
-
-/* Vertical dropdown content inside hamburger menu */
 .dropdownContent {
   display: flex;
   flex-direction: column;
@@ -265,37 +300,24 @@
   cursor: pointer;
 }
 
-.dropdownContent a {
+.dropdownContent div {
   color: white;
   text-decoration: none;
   padding: 8px;
+  transition: all 0.3s ease;
 }
 
-.dropdownContent a:hover {
-  background-color: #777;
+.dropdownContent div:hover {
+  background-color: #333;
+  transform: translateX(5px);
 }
 
-
-
-.search {
-  margin-left: 10px; /* Space between hamburger and search icon */
-  display: flex; /* Align items in the search section */
-  align-items: center; /* Center the search icon */
-}
-
-
-
-
-
-
-
-/* Media queries for small screens (below 835px) */
 @media (max-width: 835px) {
   .navButtons {
     display: none;
   }
 
-  .navBox{
+  .navBox {
     height: 60px;
   }
 
@@ -311,10 +333,11 @@
     padding-top: 0rem;
   }
 
-.search{
-  display: none;
-}
+  .search {
+    display: none;
+  }
+
   .horizontalList {
-    display: none; /* Hide the horizontal list */
+    display: none;
   }
 }
