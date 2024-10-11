@@ -85,6 +85,11 @@ a {
   transform: rotate(180deg);
 }
 
+.hamBtn:hover {
+  color: #ddd;
+  transform: translateX(5px);
+}
+
 /* Right Section */
 .rightSection {
   display: flex;
@@ -104,6 +109,12 @@ a {
   border-radius: 4px;
   font-size: 14px;
   width: 17rem;
+  transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+  width: 20rem;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
 
