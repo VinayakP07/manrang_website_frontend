@@ -7,6 +7,7 @@ import Login from './Pages/Login/Login';
 import Signup from './Pages/SignUp/SignUp';
 import HomeAdmin from './Pages/Home/HomeAdmin';
 import Kurties from './Pages/Kurties/Kurties';
+import UserProfile from './Pages/Profile/Profile';
 
 function App() {
 
@@ -21,6 +22,10 @@ function App() {
 
         <Route 
           exact path="/adminHome" element = {<HomeAdmin/>}
+        />
+
+        <Route 
+          exact path="/userProfile" element = {<UserProfile/>}
         />
 
         <Route 
