@@ -1,6 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import styles from './BottomBanner.module.css';
 
 const BottomBanner = () => {
@@ -29,42 +27,53 @@ const BottomBanner = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1050);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const handleResize = useCallback(() => {
+    setIsMobile(window.innerWidth < 1050);
+    if (window.innerWidth >= 1050) {
+      setCurrentIndex(0);
+    }
+  }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1050);
-      if (window.innerWidth >= 1050) {
-        setCurrentIndex(0);
-      }
-    };
-
     window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [handleResize]);
+
+  useEffect(() => {
+    if (!isMobile) return;
 
     const intervalId = setInterval(() => {
-      if (isMobile) {
+      if (!isTransitioning) {
+        setIsTransitioning(true);
         setCurrentIndex((prevIndex) => (prevIndex + 1) % itemsData.length);
+        setTimeout(() => setIsTransitioning(false), 500); // Match this with your CSS transition time
       }
     }, 3000);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      clearInterval(intervalId);
-    };
-  }, [isMobile]);
+    return () => clearInterval(intervalId);
+  }, [isMobile, isTransitioning, itemsData.length]);
 
   return (
     <div className={`${styles.bottomBannerBox}`}>
       {isMobile ? (
         <div className={styles.slider}>
-          <div className={styles.slide}>
-            <div className={styles.item}>
-              <div>
-                <i className={`${styles.icons} ${itemsData[currentIndex].iconClass}`}></i>
+          {itemsData.map((item, index) => (
+            <div 
+              key={index} 
+              className={`${styles.slide} ${index === currentIndex ? styles.active : ''}`}
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              <div className={styles.item}>
+                <div>
+                  <i className={`${styles.icons} ${item.iconClass}`}></i>
+                </div>
+                <h3>{item.heading}</h3>
+                <p>{item.para}</p>
               </div>
-              <h3>{itemsData[currentIndex].heading}</h3>
-              <p>{itemsData[currentIndex].para}</p>
             </div>
-          </div>
+          ))}
         </div>
       ) : (
         itemsData.map((item, index) => (
