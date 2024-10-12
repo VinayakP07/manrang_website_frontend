@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import styles from './Kurties.module.css'; // Importing CSS module
+import styles from '../Kurties/Kurties.module.css'; // Importing CSS module
 import Navbar from '../../Components/Navbar/Navbar';
 import NavbarAdmin from '../../Components/Navbar/NavbarAdmin'; // Import NavbarAdmin
 import Footer from '../../Components/Footer/Footer';
 import HomeCards from '../../Components/HomeCards/HomeCards';
 import BottomBanner from '../../Sections/Home/BottomBanner/BottomBanner';
 
-const Kurties = () => {
+const ShortKurtiesTops = () => {
   const [isAdmin, setIsAdmin] = useState(false); // State to track if the user is admin
   const [loading, setLoading] = useState(true); // State to track loading status
   const [error, setError] = useState(null); // State to track errors
@@ -116,7 +116,7 @@ const Kurties = () => {
   return (
     <>
       {isAdmin ? <NavbarAdmin /> : <Navbar />}
-      <h2 className={styles.heading}>Kurties</h2>
+      <h2 className={styles.heading}>Short Kurties and Tops</h2>
       <div className={styles.kurtiesGrid}>
         {productData1.map((ele, index) => (
           <HomeCards 
@@ -134,4 +134,4 @@ const Kurties = () => {
   );
 };
 
-export default Kurties;
+export default ShortKurtiesTops;
