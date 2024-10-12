@@ -8,6 +8,17 @@ import Signup from './Pages/SignUp/SignUp';
 import HomeAdmin from './Pages/Home/HomeAdmin';
 import Kurties from './Pages/Kurties/Kurties';
 import UserProfile from './Pages/Profile/Profile';
+import PantSet from './Pages/PantSet/PantSet';
+import Pants from  './Pages/Pants/Pants';
+import NightWear from  './Pages/NightWear/NightWear';
+import PartyWear from './Pages/PartyWear/PartyWear';
+import ShortKurtiesTops from './Pages/ShortKurtiesTops/ShortKurtiesTops';
+import DupattaStole from './Pages/DupattaStole/DupattaStole';
+import GownOnePiece from  './Pages/GownOnePiece/GownOnePiece';
+
+
+
+
 
 function App() {
 
@@ -31,6 +42,31 @@ function App() {
         <Route 
           exact path="/kurties" element = {<Kurties/>}
         />
+
+        <Route 
+          exact path="/pantSet" element = {<PantSet/>}
+        />
+
+        <Route 
+          exact path="/pants" element = {<Pants/>}
+        />
+        <Route 
+          exact path="/partyWear" element = {<PartyWear/>}
+        />
+        <Route 
+          exact path="/shortKurtiesTops" element = {<ShortKurtiesTops/>}
+        />
+        <Route 
+          exact path="/dupattaStole" element = {<DupattaStole/>}
+        />
+        <Route 
+          exact path="/gownOnePiece" element = {<GownOnePiece/>}
+        />
+        <Route 
+          exact path="/nightWear" element = {<NightWear/>}
+        />
+
+
 
         <Route 
           exact path ="/login" element = {<Login/>} 
