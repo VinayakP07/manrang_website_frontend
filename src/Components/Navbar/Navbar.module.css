@@ -85,9 +85,14 @@ a {
   transform: rotate(180deg);
 }
 
+.hamBtn{
+  margin: 1rem 0rem;
+}
+
 .hamBtn:hover {
   color: #ddd;
   transform: translateX(5px);
+  cursor: pointer;
 }
 
 /* Right Section */

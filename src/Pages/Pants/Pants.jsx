@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../Kurties/Kurties.module.css'; // Importing CSS module
@@ -11,6 +12,7 @@ const Pants = () => {
   const [isAdmin, setIsAdmin] = useState(false); // State to track if the user is admin
   const [loading, setLoading] = useState(true); // State to track loading status
   const [error, setError] = useState(null); // State to track errors
+  const [productData, setProductData] = useState([]);
 
   // Function to fetch user details based on token
   const fetchUserDetails = async () => {
@@ -38,8 +40,28 @@ const Pants = () => {
     }
   };
 
+    // Function to fetch product data
+    const fetchProductData = async () => {
+      try {
+        const apiBase = import.meta.env.VITE_API_BASE;
+        const response = await axios.get(`${apiBase}/clothes/fetchClothes`);
+        const allProducts = response.data;
+  
+        // Filter products for Kurties section
+        const kurtiesProducts = allProducts.filter(product => product.section === 'Pants');
+  
+        // Update state with filtered data
+        setProductData(kurtiesProducts);
+      } catch (err) {
+        setError('Failed to fetch product data');
+        console.error(err);
+      }
+    };
+  
+
   useEffect(() => {
     fetchUserDetails();
+    fetchProductData();
   }, []);
 
   if (loading) {
@@ -50,79 +72,17 @@ const Pants = () => {
     return <div>{error}</div>;
   }
 
-  const productData1 = [
-    {
-      title: "This is the product title",
-      price: "40",
-      description: "This is a new description to test the length...",
-      image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-    },
-    {
-      title: "This is the product title",
-      price: "40",
-      description: "This is a new description to test the length...",
-      image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-    },
-    {
-      title: "This is the product title",
-      price: "40",
-      description: "This is a new description to test the length...",
-      image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-    },
-    {
-      title: "This is the product title",
-      price: "40",
-      description: "This is a new description to test the length...",
-      image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-    },
-    {
-      title: "This is the product title",
-      price: "40",
-      description: "This is a new description to test the length...",
-      image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-    },
-    {
-      title: "This is the product title",
-      price: "40",
-      description: "This is a new description to test the length...",
-      image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-    },
-    {
-      title: "This is the product title",
-      price: "40",
-      description: "This is a new description to test the length...",
-      image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-    },
-    {
-      title: "This is the product title",
-      price: "40",
-      description: "This is a new description to test the length...",
-      image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-    },
-    {
-      title: "This is the product title",
-      price: "40",
-      description: "This is a new description to test the length...",
-      image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-    },
-    {
-      title: "This is the product title",
-      price: "40",
-      description: "This is a new description to test the length...",
-      image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-    },
-  ];
 
   return (
     <>
       {isAdmin ? <NavbarAdmin /> : <Navbar />}
       <h2 className={styles.heading}>Pants</h2>
       <div className={styles.kurtiesGrid}>
-        {productData1.map((ele, index) => (
+        {productData.map((ele, index) => (
           <HomeCards 
             key={index} 
-            image={ele.image} 
-            title={ele.title} 
+            image={ele.images[0]} 
+            title={ele.name} 
             price={ele.price}
             description={ele.description}
           />
