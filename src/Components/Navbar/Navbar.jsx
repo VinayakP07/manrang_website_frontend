@@ -108,9 +108,12 @@ const Navbar = () => {
               <i className={`fas fa-search ${style.searchIcon}`}></i>
             </div>
 
-            <div className={style.cart} onClick={handleCartClick}>
-              <i className="fas fa-shopping-cart"></i>
-            </div>
+            <Link to="/cart">
+              <div className={style.cart} onClick={handleCartClick}>
+                <i className="fas fa-shopping-cart"></i>
+              </div>
+            </Link>
+
 
             <div className={style.profile} onClick={handleProfileClick} ref={profileRef}>
               <i className="fas fa-user"></i>
