@@ -3,26 +3,24 @@
 import React from 'react';
 import styles from './HomeCards.module.css';
 
-function HomeCards({title, image, description, price }) {
+function HomeCards({ title, image, description, price }) {
   return (
     <div className={styles.productCard}>
-
       <div className={styles.productImage}>
         <img src={image} className={styles.productThumb} alt="Product" />
       </div>
 
       <div className={styles.productInfo}>
         <h2 className={styles.productBrand}>
-          {title ? `${title.slice(0, 50)}...` : 'No Title'}
-          </h2>
+          {title ? (title.length > 50 ? `${title.slice(0, 50)}...` : title) : 'No Title'}
+        </h2>
           
         <p className={styles.productShortDescription}>
-          {description ? `${description.slice(0, 80)}...` : 'No description available'}
+          {description ? (description.length > 80 ? `${description.slice(0, 80)}...` : description) : 'No description available'}
         </p>
 
-        <span className={styles.price}>${price}</span>
+        <span className={styles.price}>₹ {price}</span>
       </div>
-
     </div>
   );
 }

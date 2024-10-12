@@ -1,189 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios'; // Import Axios
 import HomeCards from '../../../Components/HomeCards/HomeCards';
 import styles from './Slider.module.css';
 
 function Slider() {
-  const productData1 = [
-    {
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-  ];
-  
-  
-  const productData2 = [
-    {
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},  
-  ];
-  
-  
-  const productData3 = [
-    {
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},
-{
-  title: "This is the product title and lets see how much it can accomodate",
-  price: "40",
-  description:
-    "This is a new description to test the length it can accomodate in the card lets see how it goes and what it can do",
-  image: "https://i.ibb.co/tsSCPCq/IMG-20240830-WA0014.jpg",
-},  
-  ];
-  
-  
+  // Initially set product data arrays to be empty
+  const [productData1, setProductData1] = useState([]);
+  const [productData2, setProductData2] = useState([]);
+  const [productData3, setProductData3] = useState([]);
 
   const [currentIndex1, setCurrentIndex1] = useState(0);
   const [currentIndex2, setCurrentIndex2] = useState(0);
@@ -193,6 +18,27 @@ function Slider() {
   const productContainerRef1 = useRef(null);
   const productContainerRef2 = useRef(null);
   const productContainerRef3 = useRef(null);
+
+  // Fetch data from APIs after component mounts
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const apiBase = import.meta.env.VITE_API_BASE;
+        const response1 = await axios.get(`${apiBase}/clothes/fetchNewArrivals`);
+        const response2 = await axios.get(`${apiBase}/clothes/fetchOurRecommendations`);
+        const response3 = await axios.get(`${apiBase}/clothes/fetchTopBuys`);
+        
+        // Update the state with fetched data
+        setProductData1(response1.data);
+        setProductData2(response2.data);
+        setProductData3(response3.data);
+      } catch (error) {
+        console.error("Error fetching product data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const updateVisibleCards = () => {
@@ -255,9 +101,9 @@ function Slider() {
 
   return (
     <div>
-      {/* Best Sellers Section */}
+      {/* New Arrivals Section */}
       <section className={styles.product}>
-        <h2 className={styles.productCategory}>Best Sellers</h2>
+        <h2 className={styles.productCategory}>New Arrivals</h2>
 
         <button className={styles.preBtn} onClick={() => prevSlide(1)}>&#8249;</button>
         <button className={styles.nxtBtn} onClick={() => nextSlide(1)}>&#8250;</button>
@@ -267,10 +113,10 @@ function Slider() {
             {productData1.map((product, index) => (
               <HomeCards
                 key={index}
-                title={product.title}
+                title={product.name}
                 price={product.price}
                 description={product.description}
-                image={product.image}
+                image={product.images}
               />
             ))}
           </div>
@@ -289,10 +135,10 @@ function Slider() {
             {productData2.map((product, index) => (
               <HomeCards
                 key={index}
-                title={product.title}
+                title={product.name}
                 price={product.price}
                 description={product.description}
-                image={product.image}
+                image={product.images[0]}
               />
             ))}
           </div>
@@ -311,10 +157,10 @@ function Slider() {
             {productData3.map((product, index) => (
               <HomeCards
                 key={index}
-                title={product.title}
+                title={product.name}
                 price={product.price}
                 description={product.description}
-                image={product.image}
+                image={product.images}
               />
             ))}
           </div>
