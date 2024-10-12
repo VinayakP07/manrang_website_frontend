@@ -15,6 +15,7 @@ import PartyWear from './Pages/PartyWear/PartyWear';
 import ShortKurtiesTops from './Pages/ShortKurtiesTops/ShortKurtiesTops';
 import DupattaStole from './Pages/DupattaStole/DupattaStole';
 import GownOnePiece from  './Pages/GownOnePiece/GownOnePiece';
+import Cart from './Pages/Cart/Cart';
 
 
 
@@ -66,8 +67,6 @@ function App() {
           exact path="/nightWear" element = {<NightWear/>}
         />
 
-
-
         <Route 
           exact path ="/login" element = {<Login/>} 
         />
@@ -76,6 +75,9 @@ function App() {
           exact path="/signup" element = {<Signup/>}
         />
 
+         <Route 
+          exact path="/cart" element = {<Cart/>}
+        />
 
       </Routes>
     </Router>
