@@ -108,9 +108,12 @@ const Navbar = () => {
               <i className={`fas fa-search ${style.searchIcon}`}></i>
             </div>
 
-            <div className={style.cart} onClick={handleCartClick}>
-              <i className="fas fa-shopping-cart"></i>
-            </div>
+            <Link to="/cart">
+              <div className={style.cart} onClick={handleCartClick}>
+                <i className="fas fa-shopping-cart"></i>
+              </div>
+            </Link>
+
 
             <div className={style.profile} onClick={handleProfileClick} ref={profileRef}>
               <i className="fas fa-user"></i>
@@ -131,13 +134,13 @@ const Navbar = () => {
         {isDropdownOpen && (
           <div className={style.horizontalList}>
             <Link to="/kurties"><div onClick={handleDropdownItemClick}>Kurties</div></Link>
-            <div onClick={handleDropdownItemClick}>Pant Set</div>
-            <div onClick={handleDropdownItemClick}>Short Kurties & Tops</div>
-            <div onClick={handleDropdownItemClick}>Pants</div>
-            <div onClick={handleDropdownItemClick}>Dupatta & Stole</div>
-            <div onClick={handleDropdownItemClick}>Party Wear</div>
-            <div onClick={handleDropdownItemClick}>Gown & One Piece</div>
-            <div onClick={handleDropdownItemClick}>Night Wear</div>
+            <Link to="/pantSet"><div onClick={handleDropdownItemClick}>Pant Set</div></Link>
+            <Link to="/shortKurtiesTops"><div onClick={handleDropdownItemClick}>Short Kurties & Tops</div></Link>
+            <Link to="/pants"><div onClick={handleDropdownItemClick}>Pants</div></Link>
+            <Link to="/dupattaStole"><div onClick={handleDropdownItemClick}>Dupatta & Stole</div></Link>
+            <Link to="/partyWear"><div onClick={handleDropdownItemClick}>Party Wear</div></Link>
+            <Link to="/gownOnePiece"><div onClick={handleDropdownItemClick}>Gown & One Piece</div></Link>
+            <Link to="/nightWear"><div onClick={handleDropdownItemClick}>Night Wear</div></Link>
           </div>
         )}
       </div>
@@ -158,13 +161,13 @@ const Navbar = () => {
         {isDropdownOpen && (
           <div className={style.dropdownContent}>
             <Link to="/kurties"><div onClick={handleDropdownItemClick}>Kurties</div></Link>
-            <div onClick={handleDropdownItemClick}>Pant Set</div>
-            <div onClick={handleDropdownItemClick}>Short Kurties & Tops</div>
-            <div onClick={handleDropdownItemClick}>Pants</div>
-            <div onClick={handleDropdownItemClick}>Dupatta & Stole</div>
-            <div onClick={handleDropdownItemClick}>Party Wear</div>
-            <div onClick={handleDropdownItemClick}>Gown & One Piece</div>
-            <div onClick={handleDropdownItemClick}>Night Wear</div>
+            <Link to="/pantSet"><div onClick={handleDropdownItemClick}>Pant Set</div></Link>
+            <Link to="/shortKurtiesTops"><div onClick={handleDropdownItemClick}>Short Kurties & Tops</div></Link>
+            <Link to="/pants"><div onClick={handleDropdownItemClick}>Pants</div></Link>
+            <Link to="/dupattaStole"><div onClick={handleDropdownItemClick}>Dupatta & Stole</div></Link>
+            <Link to="/partyWear"><div onClick={handleDropdownItemClick}>Party Wear</div></Link>
+            <Link to="/gownOnePiece"><div onClick={handleDropdownItemClick}>Gown & One Piece</div></Link>
+            <Link to="/nightWear"><div onClick={handleDropdownItemClick}>Night Wear</div></Link>
           </div>
         )}
 
