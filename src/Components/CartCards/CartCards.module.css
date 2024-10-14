@@ -1,0 +1,113 @@
+.card {
+    display: flex;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: white;
+    box-shadow: -4px -4px 5px, 4px 4px 5px;
+  }
+  
+  .productImage {
+    max-width: 220px;
+    max-height: 220px;
+    border-radius: 5px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .title{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  .description{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .stockStatus {
+    color: green;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  
+  .shippingInfo {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: rgb(92, 92, 92);
+  }
+  
+  .giftOption {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .giftOption label {
+    margin-left: 5px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .size, .color {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .priceAndActions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .quantity {
+    display: flex;
+    align-items: center;
+    color: rgb(92, 92, 92);
+  }
+  
+  .quantity select {
+    margin-left: 5px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+  
+  .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .delete, .moreOptions {
+    background: none;
+    border: none;
+    color: #007185;
+    cursor: pointer;
+    padding: 0;
+    font-size: 14px;
+  }
+  
+  .delete:hover, .moreOptions:hover {
+    text-decoration: underline;
+  }
+  
