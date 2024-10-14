@@ -1,0 +1,209 @@
+.cartContainer {
+    margin: 2rem auto;
+    padding: 1rem;
+    max-width: 1200px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cartTitle {
+    text-align: center;
+    color: #333;
+    font-size: 2.8rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    text-decoration: underline;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0;
+    background: linear-gradient(to right, #84a9ac, #3b6978);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.productImage {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.details {
+    flex: 1;
+}
+
+.title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.description {
+    font-size: 1rem;
+    color: #777;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.stockStatus {
+    color: #28a745;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.shippingInfo {
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.giftOption {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.giftOption input {
+    margin-right: 0.5rem;
+}
+
+.size, .color {
+    font-size: 1rem;
+    color: #333;
+    margin-top: 0.3rem;
+}
+
+.priceAndActions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #333;
+}
+
+.quantity select {
+    margin-left: 0.5rem;
+    padding: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+}
+
+.price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.delete, .moreOptions {
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete:hover {
+    background-color: #d9534f;
+}
+
+.moreOptions:hover {
+    background-color: #005bb5;
+}
+
+.deleteAll{
+    margin: 1rem 0rem;
+    height: 2.5rem;
+    width: 7rem;
+    background-color: rgb(236, 110, 110);
+    color: white;
+    border-radius: 0.5rem;
+    font-weight: 700;
+}
+
+.deleteAll:hover{
+    cursor: pointer;
+}
+
+.shopMore{
+    margin: 1rem 0rem;
+    height: 2.5rem;
+    width: 7rem;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 0.5rem;
+    font-weight: 700;
+}
+.shopMore:hover{
+    cursor: pointer;
+}
+
+/* Media Query for Responsiveness */
+@media (max-width: 768px) {
+    .card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .productImage {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .details {
+        width: 100%;
+    }
+
+    .priceAndActions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .delete, .moreOptions {
+        width: 100%;
+        text-align: center;
+    }
+}
