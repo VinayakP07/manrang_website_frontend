@@ -41,7 +41,6 @@ const SignUp = () => {
         <div className={style.signupForm}>
           <h2 className={style.signupTitle}><u>Sign Up</u></h2><br/>
           <br/>
-          <br/>
           <p className={style.signupDescription}>Create an account to get started.</p><br/>
           
           <form onSubmit={handleSubmit}>

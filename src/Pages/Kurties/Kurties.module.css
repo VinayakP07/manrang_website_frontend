@@ -9,17 +9,20 @@
   }
 
   .heading {
-    display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
+    text-align: center;
     color: #333;
-    margin: auto;
-    margin-top: 2rem;
-    font-size: 2.5rem;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2.8rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-style: italic;
     text-decoration: underline;
-  }
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0;
+    background: linear-gradient(to right, #84a9ac, #3b6978);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    }
     
   /* For medium screens (tablets), show 2 items per row */
   @media (max-width: 1024px) {

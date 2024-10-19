@@ -55,7 +55,7 @@ const Login = ({ onLogin }) => {
           <h2 className={style.loginTitle}><u>Login</u></h2><br/><br/><br/>
           <p className={style.loginDescription}>If you already have an account, login now.</p><br/>
           <form onSubmit={handleSubmit}>
-            <label className={style.loginLabel}>Email Address</label><br/>
+            <label className={style.loginLabel}>Email Address</label><br/><br/>
             <input 
               type="email" 
               placeholder="Email Address" 
@@ -64,7 +64,7 @@ const Login = ({ onLogin }) => {
               onChange={(e) => setEmail(e.target.value)} 
               required 
             /><br/><br/>
-            <label className={style.loginLabel}>Password</label><br/>
+            <label className={style.loginLabel}>Password</label><br/><br/>
             <input 
               type="password" 
               placeholder="Password" 
