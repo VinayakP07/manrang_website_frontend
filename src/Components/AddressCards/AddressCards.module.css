@@ -1,0 +1,50 @@
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  width: 280px;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  box-shadow: -4px -4px 5px, 4px 4px 5px;
+  cursor: pointer; /* Indicate that the card is clickable */
+  transition: border-color 0.3s ease;
+}
+strong{
+  color: black;
+}
+
+.card.selected {
+  border-color: #007185; /* Highlight the selected card */
+  border-width: 2px;
+}
+
+.addressDetails {
+  margin-bottom: 12px;
+}
+
+.addressDetails strong {
+  font-size: 16px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.addressDetails p {
+  margin-bottom: 0.35rem;
+  font-size: 14px;
+  color: #333;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.actionLink:hover {
+  text-decoration: underline;
+}
+
+.separator {
+  margin: 0 8px;
+  color: #ccc;
+}

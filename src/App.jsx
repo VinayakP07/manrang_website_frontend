@@ -16,6 +16,7 @@ import ShortKurtiesTops from './Pages/ShortKurtiesTops/ShortKurtiesTops';
 import DupattaStole from './Pages/DupattaStole/DupattaStole';
 import GownOnePiece from  './Pages/GownOnePiece/GownOnePiece';
 import Cart from './Pages/Cart/Cart';
+import Address from './Pages/Address/Address';
 
 
 
@@ -78,7 +79,9 @@ function App() {
          <Route 
           exact path="/cart" element = {<Cart/>}
         />
-
+        <Route 
+          exact path="/address" element={<Address />} 
+        />
       </Routes>
     </Router>
   );

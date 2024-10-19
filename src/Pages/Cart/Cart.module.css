@@ -22,7 +22,7 @@
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-}
+  }
 
 .card {
     display: flex;
@@ -160,6 +160,7 @@
 
 .deleteAll:hover{
     cursor: pointer;
+    background-color: rgb(220, 79, 79);
 }
 
 .shopMore{
@@ -173,6 +174,7 @@
 }
 .shopMore:hover{
     cursor: pointer;
+    background-color: #309234;
 }
 
 /* Media Query for Responsiveness */

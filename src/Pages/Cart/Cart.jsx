@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import styles from './Cart.module.css'
 import CartCards from '../../Components/CartCards/CartCards'
 import Navbar from '../../Components/Navbar/Navbar';
@@ -8,6 +9,8 @@ import Footer from '../../Components/Footer/Footer';
 
 
 function Cart() {
+
+  const navigate = useNavigate();
 
   const product = [{
     image: 'https://i.ibb.co/jTqFCXt/Whats-App-Image-2024-09-01-at-09-13-06-f5dbd9c5.jpg',
@@ -61,7 +64,9 @@ function Cart() {
   },
 ];
 
-
+const handleShopMoreClick = () => {
+  navigate('/'); // Redirect to the Home page
+};
 
 return (
   <>
@@ -72,7 +77,7 @@ return (
       {product.map((product, index) => (
         <CartCards key={index} product={product} />
       ))}
-     <button className={styles.shopMore}>Shop More</button>
+     <button className={styles.shopMore} onClick={handleShopMoreClick}>Shop More</button>
 
     </div>
     <BottomBanner />
