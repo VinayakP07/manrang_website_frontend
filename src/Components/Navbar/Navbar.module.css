@@ -160,7 +160,7 @@ a {
 /* Profile Dropdown */
 .profileDropdown {
   position: absolute;
-  top: 50px;
+  top: 5rem;
   right: 0;
   background-color: #222222;
   padding: 10px;
@@ -170,7 +170,7 @@ a {
   width: 150px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1001;  /* Ensure it's on top */
-  opacity: 0;
+  opacity: 100;
   transform: translateY(-10px);
   transition: all 0.3s ease;
 }
@@ -180,16 +180,20 @@ a {
   transform: translateY(0);
 }
 
-.profileDropdown a {
+.profileDropdown button {
   color: white;
+  background-color: #222222;
+  border: 0;
+  font-size:medium;
   text-decoration: none;
   padding: 10px;
   transition: all 0.3s ease;
 }
 
-.profileDropdown a:hover {
+.profileDropdown button:hover {
   background-color: #333;
   transform: translateX(5px);
+  cursor: pointer;
 }
 
 /* Horizontal List for Dropdown (Other Section) */

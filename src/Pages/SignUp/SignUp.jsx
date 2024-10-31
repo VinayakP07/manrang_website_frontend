@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import style from './SignUp.module.css'; // Importing CSS module
 import LoginSlider from '../../Components/LoginSlider/LoginSlider';
 import Navbar from '../../Components/Navbar/Navbar';
@@ -11,6 +12,7 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [phoneNo, setPhoneNo] = useState('');
   const [username, setUsername] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleKeyDown = (e, nextInputId) => {
@@ -25,13 +27,42 @@ const SignUp = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add sign-up logic here (e.g., API call to create an account)
-    console.log('Signing up with:', { email, password });
+  const validatePhoneNumber = (phone) => {
+    const phoneRegex = /^[0-9]{10}$/;
+    return phoneRegex.test(phone);
+  };
 
-    // After sign-up logic, redirect to the login page
-    navigate('/login');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const trimmedPhoneNo = phoneNo.trim();
+
+    if (!validatePhoneNumber(trimmedPhoneNo)) {
+      setErrorMessage('Enter a valid phone number');
+      return;
+    }
+
+    try {
+      const apiBase = import.meta.env.VITE_API_BASE;
+      const response = await axios.post(`${apiBase}/auth/user/createUser`, {
+        username,
+        email,
+        password,
+        phone: trimmedPhoneNo, // Ensure the key matches what the server expects
+      });
+
+      // console.log('Sign-up successful:', response.data);
+
+      // After sign-up logic, redirect to the login page
+      navigate('/login');
+    } catch (error) {
+      console.error('Error during sign-up:', error.response?.data || error.message);
+      if (error.response && error.response.data && error.response.data.error) {
+        setErrorMessage(error.response.data.error[0].msg);
+      } else {
+        setErrorMessage('Sign-up failed. Please try again.');
+      }
+    }
   };
 
   return (
@@ -44,17 +75,16 @@ const SignUp = () => {
           <p className={style.signupDescription}>Create an account to get started.</p><br/>
           
           <form onSubmit={handleSubmit}>
-
-          <label htmlFor="username" className={style.signupLabel}>Username</label><br /><br />
-          <input
-            placeholder="Username" 
-            value={username} 
-            className={style.signupInput} 
-            id="username" 
-            onKeyDown={(e) => handleKeyDown(e, 'signupButton')} 
-            onChange={(e) => setUsername(e.target.value)} 
-            required
-          /><br/>
+            <label htmlFor="username" className={style.signupLabel}>Username</label><br /><br />
+            <input
+              placeholder="Username" 
+              value={username} 
+              className={style.signupInput} 
+              id="username" 
+              onKeyDown={(e) => handleKeyDown(e, 'signupButton')} 
+              onChange={(e) => setUsername(e.target.value)} 
+              required
+            /><br/>
 
             <label className={style.signupLabel}>Email Address</label><br/><br/>
             <input 
@@ -68,7 +98,6 @@ const SignUp = () => {
               required 
             /><br/>
             
-
             <label className={style.signupLabel}>Password</label><br/><br/>
             <input 
               type="password" 
@@ -83,20 +112,22 @@ const SignUp = () => {
 
             <label className={style.signupLabel}>Phone Number</label><br/><br/>
             <input 
-            placeholder="Phone Number" 
-            value={phoneNo} 
-            className={style.signupInput} 
-            id="phoneNo" 
-            onKeyDown={(e) => handleKeyDown(e, 'signupButton')} 
-            onChange={(e) => {
-              // Allow only numbers and limit to 10 digits
-              const newValue = e.target.value.replace(/\D/g, '').slice(0, 10); 
-              setPhoneNo(newValue);
-            }} 
-            maxLength={10}  // Limit input to 10 characters
-            minLength={10}
-            required 
-/><br/>
+              placeholder="Phone Number" 
+              value={phoneNo} 
+              className={style.signupInput} 
+              id="phoneNo" 
+              onKeyDown={(e) => handleKeyDown(e, 'signupButton')} 
+              onChange={(e) => {
+                // Allow only numbers and limit to 10 digits
+                const newValue = e.target.value.replace(/\D/g, '').slice(0, 10); 
+                setPhoneNo(newValue);
+              }} 
+              maxLength={10}  // Limit input to 10 characters
+              required 
+            /><br/>
+
+            {errorMessage && <p className={style.errorMessage}>{errorMessage}</p>}
+
             <button type="submit" className={style.signupButton} id="signupButton">Sign Up</button>
           </form>
           <p className={style.signupFooter}>Already have an account? <Link to="/login">Login here</Link></p>
