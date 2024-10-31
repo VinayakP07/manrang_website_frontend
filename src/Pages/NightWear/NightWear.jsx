@@ -13,6 +13,7 @@ const NightWear = () => {
   const [loading, setLoading] = useState(true); // State to track loading status
   const [error, setError] = useState(null); // State to track errors
   const [productData, setProductData] = useState([]); // State to hold product data specific to Kurties
+  const apiBase = import.meta.env.VITE_API_BASE;
 
   // Function to fetch user details based on token
   const fetchUserDetails = async () => {
@@ -24,7 +25,7 @@ const NightWear = () => {
         return;
       }
 
-      const response = await axios.post('/auth/user/fetchUser', {
+      const response = await axios.post(`${apiBase}/auth/user/fetchUser`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -43,7 +44,6 @@ const NightWear = () => {
     // Function to fetch product data
     const fetchProductData = async () => {
       try {
-        const apiBase = import.meta.env.VITE_API_BASE;
         const response = await axios.get(`${apiBase}/clothes/fetchClothes`);
         const allProducts = response.data;
   

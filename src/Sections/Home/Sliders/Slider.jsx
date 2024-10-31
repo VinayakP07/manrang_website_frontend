@@ -28,10 +28,10 @@ function Slider() {
         const response2 = await axios.get(`${apiBase}/clothes/fetchOurRecommendations`);
         const response3 = await axios.get(`${apiBase}/clothes/fetchTopBuys`);
         
-        // Update the state with fetched data
-        setProductData1(response1.data);
-        setProductData2(response2.data);
-        setProductData3(response3.data);
+        // Check if responses are arrays before updating state
+        setProductData1(Array.isArray(response1.data) ? response1.data : []);
+        setProductData2(Array.isArray(response2.data) ? response2.data : []);
+        setProductData3(Array.isArray(response3.data) ? response3.data : []);
       } catch (error) {
         console.error("Error fetching product data:", error);
       }

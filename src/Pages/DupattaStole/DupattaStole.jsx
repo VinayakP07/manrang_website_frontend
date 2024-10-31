@@ -13,6 +13,8 @@ const DupattaStole = () => {
   const [loading, setLoading] = useState(true); // State to track loading status
   const [error, setError] = useState(null); // State to track errors
   const [productData, setProductData] = useState([]);
+  const apiBase = import.meta.env.VITE_API_BASE;
+
 
 
   // Function to fetch user details based on token
@@ -25,7 +27,7 @@ const DupattaStole = () => {
         return;
       }
 
-      const response = await axios.post('/auth/user/fetchUser', {
+      const response = await axios.post(`${apiBase}/auth/user/fetchUser`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -44,7 +46,6 @@ const DupattaStole = () => {
   // Function to fetch product data
   const fetchProductData = async () => {
     try {
-      const apiBase = import.meta.env.VITE_API_BASE;
       const response = await axios.get(`${apiBase}/clothes/fetchClothes`);
       const allProducts = response.data;
 
