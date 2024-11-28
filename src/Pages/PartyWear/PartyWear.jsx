@@ -25,7 +25,7 @@ const PartyWear = () => {
         return;
       }
 
-      const response = await axios.post(`${apiBase}/auth/user/fetchUser`, {
+      const response = await axios.get(`${apiBase}/auth/user/fetchUser`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
